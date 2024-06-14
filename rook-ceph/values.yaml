@@ -66,11 +66,10 @@ priorityClassName:
 
 # -- Set the container security context for the operator
 containerSecurityContext:
-  runAsNonRoot: true
-  runAsUser: 2016
-  runAsGroup: 2016
-  capabilities:
-    drop: ["ALL"]
+  runAsUser: 0
+  runAsGroup: 0
+  privileged: true
+
 # -- If true, loop devices are allowed to be used for osds in test clusters
 allowLoopDevices: false
 
@@ -625,12 +624,8 @@ discover:
   #       memory: 128Mi
 
 # -- Runs Ceph Pods as privileged to be able to write to `hostPaths` in OpenShift with SELinux restrictions.
-hostpathRequiresPrivileged: false
+hostpathRequiresPrivileged: true
 
-containerSecurityContext:
-  privileged: true
-  runAsUser: 0
-  runAsGroup: 0
 
 # -- Disable automatic orchestration when new devices are discovered.
 disableDeviceHotplug: false
